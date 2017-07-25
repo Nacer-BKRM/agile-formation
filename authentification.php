@@ -36,10 +36,11 @@ if ($isSubmitted){
     if (count($errors)==0) {
 
         //Connexion à la base de données pour vérifier l'authentification
+        $crytedpassword=sha1($password);
         $connexion = database::getInstance();
         $query = $connexion->prepare("SELECT * FROM users WHERE email=:email AND password=:password");
         $query->bindParam(':email', $email, PDO::PARAM_STR);
-        $query->bindParam(':password', sha1($password), PDO::PARAM_STR);
+        $query->bindParam(':password',$crytedpassword , PDO::PARAM_STR);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -56,11 +57,16 @@ if ($isSubmitted){
                 exit();
             }
         } else {
-            echo "Erreur";
+            echo "Données de connexions invalides";
         }
-    }
+    }?>
 
-
+<html>
+    <head>
+        <link rel="stylesheet" href="web/dependancies/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="web/dependancies/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+<?php
 if (count($errors)>0):?>
 <div class= "alert alert-danger">
     <ul>
@@ -71,7 +77,7 @@ if (count($errors)>0):?>
 </div>
 <?php endif;?>
 
-
+    <div class="container">
         <form method="post">
             <div class="form-group" >
                 <label>Votre identifiant</label>
@@ -85,5 +91,7 @@ if (count($errors)>0):?>
                  <button type="submit" name="submit" class="btn">Valider</button>
             </div>
         </form>
+    </div>
+</html>
 
 
