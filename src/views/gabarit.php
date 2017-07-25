@@ -3,15 +3,15 @@
 <head>
     <title><?= $pageTitle ?></title>
     <!--Chargement du CSS de Bootstrap-->
-    <link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="utf-8">
 </head>
 <body class="container-fluid">
 
 <!-- navigation principale-->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -28,8 +28,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.php?controller=computerHome">Accueil<span class="sr-only">(current)</span></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                <li><a href="index.php?controller=inscription">Inscription</a></li>
+                <li><a href="index.php?controller=connexion">Connexion</a></li>
                 <li><a href="#"></a></li>
             </ul>
 
@@ -40,13 +40,31 @@
 
 <!--contenu de l'application-->
 <section class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2 content">
+
+        <?php if (!empty($_SESSION['flash'])) : ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['flash'] ?>
+            </div>
+            <?php unset($_SESSION['flash']); ?>
+        <?php endif; ?>
+
+        <?php if (!empty($errors)) : ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php foreach ($errors as $error) : ?>
+                        <li><?= $error ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
         <?= $content ?>
     </div>
 </section>
 
-<script src="dependencies/jquery/dist/jquery.min.js"></script>
-<script src="dependencies/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="dependancies/jquery/dist/jquery.min.js"></script>
+<script src="dependancies/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
 </body>
