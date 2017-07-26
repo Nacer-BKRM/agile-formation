@@ -2,7 +2,6 @@
 
 <form method="post">
     <div class="form-group">
-        <input type="email" name="email" value="<?= $email ?>" hidden>
         <input type="password" name="password" class="form-control" placeholder="Nouveau mot de passe">
         <input type="password" name="confirm" class="form-control" placeholder="Confirmation">
     </div>

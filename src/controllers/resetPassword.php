@@ -69,7 +69,6 @@ renderView(
     'resetPassword',
     [
         'pageTitle' => 'Réinitialisation du mot de passe',
-        'errors' => $errors,
-        'email' => $email
+        'errors' => $errors
     ]
 );
