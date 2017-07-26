@@ -11,5 +11,6 @@
         <div class="form-group">
             <button type="submit" name="submit" class="btn">Valider</button>
         </div>
+        <a href="index.php?controller=forgotPass">Mot de passe oublié ?</a>
     </form>
 </div>

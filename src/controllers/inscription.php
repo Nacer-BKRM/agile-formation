@@ -133,7 +133,7 @@ if ($isSubmitted) {
             $errors[] = "Erreur lors de l'enregistrement de l'adresse";
         }
         $_SESSION['flash'] = ["success" => "Vous êtes maintenant inscrit"];
-        header('Location: index.php?controller=computerHome');
+        header('Location: index.php?controller=accueil');
         exit();
     }
 }
