@@ -10,11 +10,7 @@
     <meta charset="utf-8">
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
-<style>
-    .row{
-        padding-top: 75px;
-    }
-</style>
+
 <body class="container-fluid">
 
 <!-- navigation principale-->
@@ -44,6 +40,7 @@
                 <?php if (!empty($_SESSION['user'])) : ?>
                     <li><a href="index.php?controller=adminHome">Admin</a></li>
                 <?php endif; ?>
+                <li><a href="index.php?controller=computerHome">Réservation</a></li>
                 <li><a href="index.php?controller=logout">Déconnexion</a></li>
             </ul>
             <?php endif; ?>
