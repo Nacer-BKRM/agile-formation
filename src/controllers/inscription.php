@@ -27,6 +27,8 @@ if ($isSubmitted) {
     $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_STRING);
     $codePostal = filter_input(INPUT_POST, 'codepostal', FILTER_SANITIZE_STRING);
     $pays = filter_input(INPUT_POST, 'pays', FILTER_SANITIZE_STRING);
+    $captcha = $_POST['g-recaptcha-response'];
+
     if (empty($nom)) {
         $errors[] = "Vous devez saisir un nom";
     }
@@ -60,6 +62,31 @@ if ($isSubmitted) {
     if (empty($pays)) {
         $errors[] = "Vous devez saisir un pays";
     }
+    if (empty($captcha)) {
+        $errors[] = "Vous devez valider le captcha";
+    }
+
+    // Vérification par google
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array('secret' => '6LctZyoUAAAAADrE8_XBHp9h0o5Vmb1cN6NflioS', 'response' => $captcha);
+
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        )
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    if ($result === FALSE) { /* Handle error */ }
+
+    $rs = json_decode($result, true);
+
+    if (!$rs['success']) {
+        $errors[] = "Vous n'avez pas été validé par Google";
+    }
+
     if (empty($errors)) {
 
         $pdo->beginTransaction();
@@ -94,8 +121,8 @@ if ($isSubmitted) {
             $pdo->rollBack();
             $errors[] = "Erreur lors de l'enregistrement de l'adresse";
         }
-        $_SESSION['flash'] = "Vous êtes maintenant inscrit";
-        header('Location: /index.php?controller=computerHome');
+        $_SESSION['flash'] = ["success" => "Vous êtes maintenant inscrit"];
+        header('Location: index.php?controller=computerHome');
         exit();
     }
 }
@@ -104,6 +131,7 @@ if ($isSubmitted) {
 renderView(
     'inscription',
     [
-        'pageTitle' => 'Inscription'
+        'pageTitle' => 'Inscription',
+        'errors' => $errors
     ]
 );

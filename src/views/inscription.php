@@ -23,6 +23,7 @@
         <input type="text" name="codepostal" placeholder="Code postal" class="form-control">
         <input type="text" name="pays" placeholder="Pays" class="form-control">
     </div>
+    <div class="g-recaptcha" data-sitekey="6LctZyoUAAAAAP9artWahYZHcsHKuDNZrqGkSPCX"></div>
     <div class="form-group">
         <button class="btn btn-primary" name="submit" type="submit">Inscription</button>
     </div>
