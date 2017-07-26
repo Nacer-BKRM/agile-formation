@@ -30,7 +30,7 @@
                 <li class="active"><a href="index.php?controller=computerHome">Accueil<span class="sr-only">(current)</span></a></li>
                 <li><a href="index.php?controller=inscription">Inscription</a></li>
                 <li><a href="index.php?controller=connexion">Connexion</a></li>
-                <li><a href="#"></a></li>
+                <li><a href="index.php?controller=contact">Contact</a></li>
             </ul>
 
 
