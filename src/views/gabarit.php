@@ -33,6 +33,9 @@
 
             <?php if (!empty($_SESSION['user'])) : ?>
             <ul class="nav navbar-nav navbar-right">
+                <?php if (!empty($_SESSION['user'])) : ?>
+                    <li><a href="index.php?controller=adminHome">Admin</a></li>
+                <?php endif; ?>
                 <li><a href="index.php?controller=logout">Déconnexion</a></li>
             </ul>
             <?php endif; ?>
@@ -74,7 +77,7 @@
 
 <script src="dependancies/jquery/dist/jquery.min.js"></script>
 <script src="dependancies/bootstrap/dist/js/bootstrap.min.js"></script>
-
+<script src="js/admin_panel.js"></script>
 
 </body>
 </html>
