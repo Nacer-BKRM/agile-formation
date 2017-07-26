@@ -28,7 +28,9 @@
         <!-- collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+               
                 <li><a href="index.php?controller=accueil">Accueil</a></li>
+          
             </ul>
 
             <?php if (!empty($_SESSION['user'])) : ?>
@@ -41,6 +43,7 @@
             <?php endif; ?>
             <?php if (empty($_SESSION['user'])) : ?>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.php?controller=contact">Contact</a></li>
                     <li><a href="index.php?controller=inscription">Inscription</a></li>
                     <li><a href="index.php?controller=connexion">Connexion</a></li>
                 </ul>
