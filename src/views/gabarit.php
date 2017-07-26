@@ -3,12 +3,18 @@
 <head>
     <title><?= $pageTitle ?></title>
     <!--Chargement du CSS de Bootstrap-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/style.css">
     <meta charset="utf-8">
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
+<style>
+    .row{
+        padding-top: 75px;
+    }
+</style>
 <body class="container-fluid">
 
 <!-- navigation principale-->
