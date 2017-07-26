@@ -14,10 +14,10 @@
 
         ?>
 
-            <a href="index.php?controller=gestionPC&id=<?=$item['id_pc']?>" class="list-group-item <?=$state?>">
+            <a href="index.php?controller=reservation&id=<?=$item['id_pc']?>" class="list-group-item <?=$state?>">
                 <h3 class="list-group-item-heading"><?= $item["nom"] ?></h3>
-                <span class="glyphicon glyphicon-object-align-bottom" style="color: <?=$color?>"></span>
 
+                <i class="material-icons" style="font-size:48px; color: <?=$color?>">laptop_windows</i>
             </a>
         <?php endforeach; ?>
     </div>

@@ -5,13 +5,19 @@
     <!--Chargement du CSS de Bootstrap-->
     <link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <meta charset="utf-8">
 </head>
+<style>
+    .row{
+        padding-top: 75px;
+    }
+</style>
 <body class="container-fluid">
 
 <!-- navigation principale-->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
