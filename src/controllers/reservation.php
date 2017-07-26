@@ -1,6 +1,6 @@
 <?php
-
-$id_user= 14;
+//A remplacer par l'utilisateur qui se connecte
+$id_user= 27;
 
 $id_pc = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
 $connexion = getPDO();
