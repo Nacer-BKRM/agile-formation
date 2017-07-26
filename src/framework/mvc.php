@@ -83,7 +83,7 @@ function serializeUser(array $infos) {
 
 function logoutUser() {
     unset($_SESSION['user']);
-    header('Location: index.php?controller=computerHome');
+    header('Location: index.php?controller=accueil');
     exit();
 }
 
