@@ -27,7 +27,10 @@ if ($isSubmitted) {
     $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_STRING);
     $codePostal = filter_input(INPUT_POST, 'codepostal', FILTER_SANITIZE_STRING);
     $pays = filter_input(INPUT_POST, 'pays', FILTER_SANITIZE_STRING);
+    $newsletter = filter_has_var(INPUT_POST, 'newsletter');
     $captcha = $_POST['g-recaptcha-response'];
+
+    var_dump($_POST);
 
     if (empty($nom)) {
         $errors[] = "Vous devez saisir un nom";
@@ -90,9 +93,11 @@ if ($isSubmitted) {
     if (empty($errors)) {
 
         $pdo->beginTransaction();
-        $sql = $pdo->prepare("INSERT INTO users (nom, prenom, email, password, telephone, sexe, role) VALUES (:nom, :prenom, :email, :password, :telephone, :sexe, :role)");
+        $sql = $pdo->prepare("INSERT INTO users (nom, prenom, email, password, telephone, sexe, role, newsletter) VALUES (:nom, :prenom, :email, :password, :telephone, :sexe, :role, :newsletter)");
         $passcrypt = sha1($password);
         $role = "USER";
+        $non = "N";
+        $oui = "O";
         $sql->bindParam(':nom', $nom);
         $sql->bindParam(':prenom', $prenom);
         $sql->bindParam(':email', $email);
@@ -100,6 +105,12 @@ if ($isSubmitted) {
         $sql->bindParam(':telephone', $telephone);
         $sql->bindParam(':sexe', $sexe);
         $sql->bindParam(':role', $role);
+        if ($newsletter) {
+            $sql->bindParam(':newsletter', $non);
+        } else {
+            $sql->bindParam(':newsletter', $oui);
+        }
+
         try {
             $sql->execute();
             $lastInsertId = $pdo->lastInsertId();
