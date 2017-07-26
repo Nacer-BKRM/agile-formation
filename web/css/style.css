@@ -27,11 +27,14 @@ hr{
 .caption {
     color: #22211f;
     text-align: center;
-
 }
 .size {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
 
+.lines:hover {
+    background-color: rgba(0, 183, 200, 0.1);
+    cursor: pointer;
 }

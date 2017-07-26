@@ -1,4 +1,5 @@
-<div class="container">
+<h1>Connexion</h1>
+
     <form method="post">
         <div class="form-group" >
             <label>Votre identifiant</label>
@@ -13,4 +14,3 @@
         </div>
         <a href="index.php?controller=forgotPass">Mot de passe oublié ?</a>
     </form>
-</div>

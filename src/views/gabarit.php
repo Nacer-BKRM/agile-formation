@@ -37,9 +37,10 @@
 
             <?php if (!empty($_SESSION['user'])) : ?>
             <ul class="nav navbar-nav navbar-right">
-                <?php if (!empty($_SESSION['user'])) : ?>
+                <?php if (!empty($_SESSION['user']) && $_SESSION['user']['role'] == "ADMIN") : ?>
                     <li><a href="index.php?controller=adminHome">Admin</a></li>
                 <?php endif; ?>
+                <li><a href="index.php?controller=contact">Contact</a></li>
                 <li><a href="index.php?controller=computerHome">Réservation</a></li>
                 <li><a href="index.php?controller=logout">Déconnexion</a></li>
             </ul>

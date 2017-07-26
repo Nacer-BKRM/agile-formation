@@ -41,7 +41,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <table class="table table-bordered table-striped" id="table-users">
+                            <table class="table table-bordered" id="table-users">
                                 <tr>
                                     <th>Nom</th>
                                     <th>Prénom</th>
@@ -51,7 +51,7 @@
                                     <th>Role</th>
                                 </tr>
                                 <?php foreach ($users as $user): ?>
-                                    <tr>
+                                    <tr class="lines">
                                         <td><?= $user['nom'] ?></td>
                                         <td><?= $user['prenom'] ?></td>
                                         <td id="email"><?= $user['email'] ?></td>

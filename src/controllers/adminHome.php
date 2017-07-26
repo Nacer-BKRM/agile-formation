@@ -19,7 +19,7 @@ $errors = [];
 $sql = 'SELECT * FROM pcs';
 $listPC = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = 'SELECT * FROM users';
+$sql = 'SELECT * FROM users ORDER BY nom';
 $users = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 $isSubmitted = filter_has_var(INPUT_POST, 'submit');
