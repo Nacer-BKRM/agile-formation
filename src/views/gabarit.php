@@ -3,11 +3,12 @@
 <head>
     <title><?= $pageTitle ?></title>
     <!--Chargement du CSS de Bootstrap-->
-    <link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dependencies/bootstrap/dist/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dependancies/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="utf-8">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <style>
     .row{
@@ -17,7 +18,7 @@
 <body class="container-fluid">
 
 <!-- navigation principale-->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -27,18 +28,32 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php?controller=computerHome">Cyber Café</a>
+            <a class="navbar-brand" >Cyber Café</a>
         </div>
 
         <!-- collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php?controller=computerHome">Accueil<span class="sr-only">(current)</span></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+
+                <li><a href="index.php?controller=accueil">Accueil</a></li>
+
             </ul>
 
+            <?php if (!empty($_SESSION['user'])) : ?>
+            <ul class="nav navbar-nav navbar-right">
+                <?php if (!empty($_SESSION['user'])) : ?>
+                    <li><a href="index.php?controller=adminHome">Admin</a></li>
+                <?php endif; ?>
+                <li><a href="index.php?controller=logout">Déconnexion</a></li>
+            </ul>
+            <?php endif; ?>
+            <?php if (empty($_SESSION['user'])) : ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.php?controller=contact">Contact</a></li>
+                    <li><a href="index.php?controller=inscription">Inscription</a></li>
+                    <li><a href="index.php?controller=connexion">Connexion</a></li>
+                </ul>
+            <?php endif; ?>
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -46,14 +61,32 @@
 
 <!--contenu de l'application-->
 <section class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2 content">
+
+        <?php if (!empty($_SESSION['flash'])) : ?>
+            <div class="alert alert-<?= array_keys($_SESSION['flash'])[0] ?>">
+                <?= $_SESSION['flash'][array_keys($_SESSION['flash'])[0]] ?>
+            </div>
+            <?php unset($_SESSION['flash']); ?>
+        <?php endif; ?>
+
+        <?php if (!empty($errors)) : ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php foreach ($errors as $error) : ?>
+                        <li><?= $error ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
         <?= $content ?>
     </div>
 </section>
 
-<script src="dependencies/jquery/dist/jquery.min.js"></script>
-<script src="dependencies/bootstrap/dist/js/bootstrap.min.js"></script>
-
+<script src="dependancies/jquery/dist/jquery.min.js"></script>
+<script src="dependancies/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/admin_panel.js"></script>
 
 </body>
 </html>

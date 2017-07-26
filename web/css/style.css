@@ -1,0 +1,36 @@
+input {
+    margin-top: 10px;
+}
+
+label {
+    margin-top: 10px;
+}
+
+.content {
+    padding-top: 75px;
+}
+
+.map {
+    margin: auto;
+    display: block;
+    padding: 20px;
+}
+hr{
+    color: #843534;
+    width: 50%;
+    margin-left: 0;
+}
+.formcontact{
+    padding: 20px;
+
+.caption {
+    color: #22211f;
+    text-align: center;
+
+}
+.size {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}

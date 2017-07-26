@@ -1,2 +1,3 @@
-web/dependencies/*
+web/dependancies/*
 .idea/*
+test.php
