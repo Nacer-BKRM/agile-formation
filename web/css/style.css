@@ -9,3 +9,13 @@ label {
 .content {
     padding-top: 75px;
 }
+.caption{
+    color: #22211f;
+    text-align: center;
+
+}
+.size{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
