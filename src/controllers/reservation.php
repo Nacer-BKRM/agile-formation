@@ -33,13 +33,13 @@ $error = [];
 if ($isSubmitted){
     $end = filter_input(INPUT_POST, 'endTime');
 
-    if ($end<$actualDate){
+    if (strtotime($end)<$actualTimestamp){
         $error[] = "Vous devez saisir une heure de fin supérieure à celle de début";
     }
     if (count($error)==0){
         $h = strtotime($end)+2*3600;
         $endDate = new DateTime("@$h");
-        //$test = ($h - $actualTimestamp)-2*3600;var_dump($end);var_dump($actualDate); var_dump($test);exit;
+
         $sql = 'INSERT INTO reservations (debut, fin, id_pc, id_user) VALUES (?,?,?,?)';
         $stm = $connexion->prepare($sql);
         $stm->execute([$actualDate->format('Y-m-d H:i:s'),$endDate->format('Y-m-d H:i:s'),$id_pc,$id_user]);
@@ -47,7 +47,16 @@ if ($isSubmitted){
         $sql = 'UPDATE users SET credit=:credit WHERE id_user=:id_user';
         $params['id_user'] = $id_user;
         $params['credit'] = $user['credit']-(strtotime($end)-$actualTimestamp)/3600*3;
+        $stm = $connexion->prepare($sql);
+        $stm->execute($params);
 
+        $sql = 'UPDATE pcs SET libre=1 WHERE id_pc =:id';
+        $para["id"] = $id_pc;
+        $stm = $connexion->prepare($sql);
+        $stm->execute($para);
+
+
+        header("location:index.php?controller=computerHome");
     }
 
 }
